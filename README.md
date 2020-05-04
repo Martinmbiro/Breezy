@@ -1,7 +1,7 @@
 # Breezy
 
 A weather app that displays current weather for a hard-coded location (for now, since I plan on including geo-location as well as reverse geo-coding capabilities in due time) at the time of request. It has a swipe-to-refresh functionality that allows the user to refresh weather data at will. Additionally, the app supports a weather auto-refresh feature that the user has control over, and fires a notification when the weather is refreshed in the background.
-It’s a pretty simple app, in all honesty, but it tries to use best programming practices and android Architecture components, which are part of the Android Jetpack, as recommended by Google.
+It’s a pretty simple app, in all honesty, but it tries to use best programming practices and android Architecture components, which are part of the [Android Jetpack](https://www.youtube.com/watch?v=LmkKFCfmnhQ), as recommended by Google.
 Also, built entirely on Java.
 
 **Please note, that the app is currently under heavy development and restructuring, but most of the working concepts if any, will remain the same.**
