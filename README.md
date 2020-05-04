@@ -7,10 +7,10 @@ Also, built entirely on Java.
 **Please note, that the app is currently under heavy development and restructuring, but most of the working concepts if any, will remain the same.**
 
 **Functionality yet to implement:**
-- [ ] Inflating views with Observable live-date with data-binding
-- [ ] Adding a Preferences and an Info activity
-- [ ] Adding the logic to handle user preferences on weather updates
-- [ ] Geo-location and reverse geo-coding to access user's current location
+- [ ] *Inflating views with Observable live-date using data-binding*
+- [ ] *Adding a Preferences and an Info activity*
+- [ ] *Adding the logic to handle user preferences on weather updates*
+- [ ] *Geo-location and reverse geo-coding to access user's current location*
 
 # TOOLS
 ### 1.	[Room](https://www.youtube.com/watch?v=SKWh4ckvFPM)
