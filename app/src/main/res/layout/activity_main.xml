@@ -106,8 +106,7 @@
                                     android:gravity="end"
                                     android:text="Mon, 2.45AM"
                                     android:textColor="@color/colorNotification"
-                                    android:textSize="19dp"
-                                    android:textStyle="bold"/>
+                                    android:textSize="19dp" />
 
                             </LinearLayout>
 
@@ -132,7 +131,8 @@
                                 android:text="@{viewModel.mSummary}"
                                 android:textAlignment="center"
                                 android:textColor="@color/colorAccent"
-                                android:textSize="26sp"/>
+                                android:textSize="26sp"
+                                android:textStyle="bold" />
                         </LinearLayout>
 
                     </androidx.cardview.widget.CardView>

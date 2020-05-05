@@ -3,24 +3,27 @@ package com.ahrefs.blizzard.ui;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.ahrefs.blizzard.R;
 import com.ahrefs.blizzard.databinding.ActivityMainBinding;
 import com.ahrefs.blizzard.model.room.Weather;
 import com.ahrefs.blizzard.viewmodel.WeatherViewModel;
-import com.google.android.material.snackbar.Snackbar;
 import com.pd.chocobar.ChocoBar;
 
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.work.WorkInfo;
+import androidx.work.WorkManager;
+
+import static com.ahrefs.blizzard.viewmodel.WeatherViewModel.ONE_TIME_REQUEST_TAG;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
@@ -66,9 +69,10 @@ public class MainActivity extends AppCompatActivity {
                 if (!mViewModel.isNetworkAvailable()) {
                     ChocoBar.builder()
                             .setActivity(MainActivity.this)
-                            .setActionText("OKAY")
-                            .setText("Check Connection")
-                            .setDuration(ChocoBar.LENGTH_INDEFINITE)
+                            .setIcon(R.drawable.ic_signal)
+                            .setText("You might be offline")
+                            //.centerText()
+                            .setDuration(ChocoBar.LENGTH_LONG)
                             .build()
                             .show();
                 }
@@ -76,17 +80,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*WorkManager.getInstance(MainActivity.this)
-                .getWorkInfosByTagLiveData(ONE_TIME_WORK_TAG).observe(this, new Observer<List<WorkInfo>>() {
+        /*Observe States of Work and respond appropriately*/
+        WorkManager.getInstance(MainActivity.this)
+                .getWorkInfosByTagLiveData(ONE_TIME_REQUEST_TAG)
+                .observe(this, new Observer<List<WorkInfo>>() {
             @Override
             public void onChanged(List<WorkInfo> workInfos) {
                 if(workInfos!=null){
-                    if(workInfos.get(0).getState() == WorkInfo.State.ENQUEUED){
-                        mBinding.swipeContainer.setRefreshing(false);
+                    if(workInfos.get(0).getState() == WorkInfo.State.SUCCEEDED){
+                        Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
-        });*/
+        });
 
     }
 
@@ -139,12 +145,12 @@ public class MainActivity extends AppCompatActivity {
 
         if (todayMidnight.get(Calendar.DAY_OF_MONTH) == timeOfRequest.get(Calendar.DAY_OF_MONTH)) {
             String timeToday = DateFormat.getTimeInstance(DateFormat.SHORT).format(timeOfRequest.getTime());
-            mBinding.timeTextView.setText(timeToday);
+            mBinding.timeTextView.setText("At " + timeToday);
         } else if ((todayMidnight.get(Calendar.DAY_OF_MONTH) - timeOfRequest.get(Calendar.DAY_OF_MONTH)) == 1) {
             mBinding.timeTextView.setText("Yesterday");
         } else {
             String simpleDate = DateFormat.getDateInstance(DateFormat.MEDIUM).format(timeOfRequest.getTime());
-            mBinding.timeTextView.setText("At " + simpleDate);
+            mBinding.timeTextView.setText("On " + simpleDate);
         }
     }
 

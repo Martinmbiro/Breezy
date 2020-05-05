@@ -101,7 +101,7 @@ public class Repository {
 
                     /*Create a new Weather Object from this*/
                     Weather latestWeather = new Weather(System.currentTimeMillis(),newCurrently.getSummary(),newCurrently.getIcon(),
-                            newCurrently.getTemperature() + " ºC",
+                            newCurrently.getTemperature() + "ºC",
                             newCurrently.getHumidity()*100 +"%",
                             newCurrently.getUvIndex());
 

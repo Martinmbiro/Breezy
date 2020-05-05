@@ -7,7 +7,6 @@ import android.net.NetworkInfo;
 
 import com.ahrefs.blizzard.Repository;
 import com.ahrefs.blizzard.model.room.Weather;
-import com.ahrefs.blizzard.ui.MainActivity;
 import com.ahrefs.blizzard.workmanager.OneTimeWorker;
 
 import java.util.Objects;
@@ -30,7 +29,8 @@ import static com.ahrefs.blizzard.workmanager.EnqueuePeriodicService.PERIODIC_RE
 
 
 public class WeatherViewModel extends AndroidViewModel {
-    public static final String ONE_TIME_WORK_TAG = "com.ahrefs.blizzard_ONE-TIME-REFRESH-WORK-TAG";
+    public static final String ONE_TIME_REQUEST_TAG = "com.ahrefs.blizzard_ONE-TIME-REFRESH-WORK-TAG";
+    public static final String ONE_TIME_WORK_NAME = "com.ahrefs.blizzard_ONE-TIME-REFRESH-WORK-NAME";
     private OneTimeWorkRequest mOneTimeWorkRequest;
     private LiveData<Weather> mWeatherLiveData;
     private Repository mRepository;
@@ -73,12 +73,13 @@ public class WeatherViewModel extends AndroidViewModel {
                 .build();
 
         mOneTimeWorkRequest = new OneTimeWorkRequest.Builder(OneTimeWorker.class)
+                .addTag(ONE_TIME_REQUEST_TAG)
                 .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 3, TimeUnit.SECONDS)
                 .setConstraints(constraints)
                 .build();
 
         WorkManager.getInstance(mApplication.getApplicationContext())
-                .enqueueUniqueWork(ONE_TIME_WORK_TAG, ExistingWorkPolicy.KEEP, mOneTimeWorkRequest);
+                .enqueueUniqueWork(ONE_TIME_WORK_NAME, ExistingWorkPolicy.KEEP, mOneTimeWorkRequest);
     }
 
     /*Cancel AutoRefresh Periodic work*/
