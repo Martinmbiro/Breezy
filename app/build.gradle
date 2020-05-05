@@ -20,10 +20,9 @@ android {
         }
     }
 
-    //Enable ViewBinding
-    //viewBinding {
-      //  enabled = true
-    //}
+    dataBinding {
+        enabled = true
+    }
 
 }
 
@@ -83,5 +82,8 @@ dependencies {
 
     //Swipe to Refresh Layout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+
+    //Chocobar
+    implementation 'com.github.Pradyuman7:ChocoBar:V1.2'
 
 }

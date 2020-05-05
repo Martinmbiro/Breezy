@@ -1,5 +1,6 @@
 package com.ahrefs.blizzard.model.room;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,8 +13,8 @@ public class Weather {
     private Long mTime;
     private String mSummary;
     private String mIcon;
-    private double mTemperature;
-    private double mHumidity;
+    private String mTemperature;
+    private String mHumidity;
     private double mUvIndex;
 
     /*Getters*/
@@ -33,11 +34,11 @@ public class Weather {
         return mIcon;
     }
 
-    public double getTemperature() {
+    public String getTemperature() {
         return mTemperature;
     }
 
-    public double getHumidity() {
+    public String getHumidity() {
         return mHumidity;
     }
 
@@ -46,7 +47,7 @@ public class Weather {
     }
 
     /*Constructor*/
-    public Weather(Long time, String summary, String icon, double temperature, double humidity, double uvIndex) {
+    public Weather(Long time, String summary, String icon, String temperature, String humidity, double uvIndex) {
         mTime = time;
         mSummary = summary;
         mIcon = icon;

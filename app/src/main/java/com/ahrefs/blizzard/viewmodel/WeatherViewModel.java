@@ -10,11 +10,13 @@ import com.ahrefs.blizzard.model.room.Weather;
 import com.ahrefs.blizzard.ui.MainActivity;
 import com.ahrefs.blizzard.workmanager.OneTimeWorker;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.work.BackoffPolicy;
@@ -28,11 +30,16 @@ import static com.ahrefs.blizzard.workmanager.EnqueuePeriodicService.PERIODIC_RE
 
 
 public class WeatherViewModel extends AndroidViewModel {
-    private static final String ONE_TIME_WORK_TAG = "com.ahrefs.blizzard_ONE-TIME-REFRESH-WORK-TAG";
+    public static final String ONE_TIME_WORK_TAG = "com.ahrefs.blizzard_ONE-TIME-REFRESH-WORK-TAG";
     private OneTimeWorkRequest mOneTimeWorkRequest;
     private LiveData<Weather> mWeatherLiveData;
     private Repository mRepository;
     private Application mApplication;
+
+    public MutableLiveData<String> mSummary = new MutableLiveData<>();
+    public MutableLiveData<String> mHumidity = new MutableLiveData<>();
+    public MutableLiveData<String> mTemperature = new MutableLiveData<>();
+    public MutableLiveData<String> mUvIndex = new MutableLiveData<>();
 
     public WeatherViewModel(@NonNull Application application) {
         super(application);
@@ -41,7 +48,7 @@ public class WeatherViewModel extends AndroidViewModel {
         mWeatherLiveData = mRepository.getWeatherLiveData();
     }
 
-    /*Get Weather Livedata weather object*/
+    /*Get Weather LiveData object*/
     public LiveData<Weather> getWeatherLiveData() {
         return mWeatherLiveData;
     }
@@ -80,7 +87,12 @@ public class WeatherViewModel extends AndroidViewModel {
                 .cancelAllWorkByTag(PERIODIC_REQUEST_TAG);
     }
 
-
+    public void updateFields(){
+        mSummary.setValue(Objects.requireNonNull(mRepository.getWeatherLiveData().getValue()).getSummary());
+        mHumidity.setValue(mRepository.getWeatherLiveData().getValue().getHumidity());
+        mTemperature.setValue(mRepository.getWeatherLiveData().getValue().getTemperature());
+        mUvIndex.setValue(String.valueOf(mRepository.getWeatherLiveData().getValue().getUvIndex()));
+    }
 
     /*Factory Class for Instantiating the WeatherViewModel class without a constructor*/
     public static class Factory extends ViewModelProvider.NewInstanceFactory {

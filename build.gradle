@@ -23,6 +23,9 @@ allprojects {
         
         //For RxJava and RxAndroid
         maven { url "https://oss.jfrog.org/libs-snapshot" }
+
+        //For Chocobar
+        maven { url 'https://www.jitpack.io' }
         
     }
 }

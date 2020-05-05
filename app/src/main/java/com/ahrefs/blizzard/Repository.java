@@ -100,8 +100,10 @@ public class Repository {
                     Currently newCurrently = response.body().getCurrently();
 
                     /*Create a new Weather Object from this*/
-                    Weather latestWeather = new Weather(newCurrently.getTime(),newCurrently.getSummary(),newCurrently.getIcon(),
-                            newCurrently.getTemperature(),newCurrently.getHumidity(),newCurrently.getUvIndex());
+                    Weather latestWeather = new Weather(System.currentTimeMillis(),newCurrently.getSummary(),newCurrently.getIcon(),
+                            newCurrently.getTemperature() + " ºC",
+                            newCurrently.getHumidity()*100 +"%",
+                            newCurrently.getUvIndex());
 
                     /*Insert this weather into DB*/
                     insertWeather(latestWeather);
