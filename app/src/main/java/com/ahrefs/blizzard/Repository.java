@@ -84,8 +84,8 @@ public class Repository {
     }
 
     /*Responsible for Refreshing Weather in the Db
-    * Makes request to obtain new weather,
-    * Deletes old Weather and Updates table with new Weather*/
+     * Makes request to obtain new weather,
+     * Deletes old Weather and Updates table with new Weather*/
     public void refreshWeather(final Boolean isPeriodic, final Context context) {
         BreezyAPI breezyAPI = RetrofitClient.getInstance().create(BreezyAPI.class);
         Call<BreezyResponse> call = breezyAPI.getResponse();
@@ -98,11 +98,16 @@ public class Repository {
 
                     /* Get currently Object from Response*/
                     Currently newCurrently = response.body().getCurrently();
+                    String newTemperature = Math.round((int) newCurrently.getTemperature()) + "ºC";
+                    double halfBakedHumidity = newCurrently.getHumidity() * 100;
+                    String newHumidity = Math.round((int) halfBakedHumidity) + "%";
 
                     /*Create a new Weather Object from this*/
-                    Weather latestWeather = new Weather(System.currentTimeMillis(),newCurrently.getSummary(),newCurrently.getIcon(),
-                            newCurrently.getTemperature() + "ºC",
-                            newCurrently.getHumidity()*100 +"%",
+                    Weather latestWeather = new Weather(System.currentTimeMillis(), newCurrently.getSummary(), newCurrently.getIcon(),
+                            //newCurrently.getTemperature() + "ºC",
+                            //newCurrently.getHumidity()*100 +"%",
+                            newTemperature,
+                            newHumidity,
                             newCurrently.getUvIndex());
 
                     /*Insert this weather into DB*/

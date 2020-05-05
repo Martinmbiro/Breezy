@@ -1,5 +1,6 @@
 package com.ahrefs.blizzard.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -164,17 +165,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.item_info:
-                //TODO: Insert Logic later
-                Toast.makeText(this, "Start info Activity", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,InfoActivity.class));
                 return true;
             case R.id.item_preferences:
-                //TODO: Insert Logic later
-                Toast.makeText(this, "Start Preferences Activity", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this,SettingsActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 
 }

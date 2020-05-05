@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.ahrefs.blizzard.viewmodel.WeatherViewModel" />
@@ -23,7 +22,7 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:background="@color/colorPrimary"
             android:elevation="3dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -247,7 +246,7 @@
                         android:fontFamily="@font/darkline"
                         android:text="Swipe to Refresh"
                         android:textAlignment="center"
-                        android:textSize="15sp" />
+                        android:textSize="18sp" />
 
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
