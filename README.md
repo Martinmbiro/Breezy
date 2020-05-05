@@ -52,7 +52,7 @@ A class in android used to saving small packets of data. In this case, I used it
 
 ### 10.	[DarkSky API](https://darksky.net/dev)
 
-The Web service from which I requested weather data
+The Web service from which the app requests weather data
 
 
  
