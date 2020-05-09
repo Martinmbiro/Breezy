@@ -15,15 +15,15 @@ Also, built entirely on Java.
 
 ## Screenshots
 
-|<img src='shots/main1.png' height='300'/>|<img src='shots/main2.png' height='300'/>|<img src='shots/main3.png' height='300'/>|<img src='shots/main4.png' height='300'/>|
+|<img src='shots/main1.png' width='200'/>|<img src='shots/main2.png' width='200'/>|<img src='shots/main3.png' width='200'/>|<img src='shots/main4.png' width='200'/>|
 |:--:|:--:|:--:|:--:|
 |Main Activity|
 
-|<img src='shots/prefs2.png' height='300'/>|<img src='shots/prefs1.png' height='300'/>|
+|<img src='shots/prefs2.png' width='200'/>|<img src='shots/prefs1.png' width='200'/>|
 |:--:|:--:|
 |Autosync Off|Autosync On|
 
-|<img src='shots/info.png' height='300'/>|<img src='shots/notification.png' height='300'/>|
+|<img src='shots/info.png' width='200'/>|<img src='shots/notification.png' width='200'/>|
 |:--:|:--:|
 |Info Activity|Notification|
 
