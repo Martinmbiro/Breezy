@@ -2,4 +2,6 @@
     <string name="app_name">Breezy</string>
     <string name="shared_preferences">com.ahrefs.blizzard_prefs</string>
     <string name="is_first">com.ahrefs.blizzard_prefs_isfirst</string>
+    <string name="wasSwitchOn">was_switch_on</string>
+    <string name="refreshInterval">refresh_interval</string>
 </resources>

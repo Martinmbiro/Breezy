@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
-/*Worker class responsible for Periodic Autorefresh calls*/
+/*Worker class responsible for Periodic AutoRefresh calls*/
 public class AutoRefreshWorker extends Worker {
     private Repository mRepository;
     private Context mContext;

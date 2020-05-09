@@ -37,6 +37,11 @@
         <service
             android:name=".workmanager.EnqueuePeriodicService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <service
+            android:name=".ui.NotificationService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
+
     </application>
 
 </manifest>

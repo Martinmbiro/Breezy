@@ -13,7 +13,7 @@ import com.ahrefs.blizzard.model.retrofit.RetrofitClient;
 import com.ahrefs.blizzard.model.room.Weather;
 import com.ahrefs.blizzard.model.room.WeatherDao;
 import com.ahrefs.blizzard.model.room.WeatherDb;
-import com.ahrefs.blizzard.ui.NotificationReceiver;
+import com.ahrefs.blizzard.ui.NotificationService;
 
 import androidx.lifecycle.LiveData;
 import io.reactivex.rxjava3.annotations.NonNull;
@@ -92,7 +92,7 @@ public class Repository {
         call.enqueue(new Callback<BreezyResponse>() {
             @Override
             public void onResponse(Call<BreezyResponse> call, Response<BreezyResponse> response) {
-                if (response.isSuccessful() && response.body() != null) {
+                if (response.isSuccessful() && response.body().getCurrently().getSummary() != null) {
                     /*Only if response is successful, Empty the Table*/
                     deleteOldWeather();
 
@@ -103,7 +103,10 @@ public class Repository {
                     String newHumidity = Math.round((int) halfBakedHumidity) + "%";
 
                     /*Create a new Weather Object from this*/
-                    Weather latestWeather = new Weather(System.currentTimeMillis(), newCurrently.getSummary(), newCurrently.getIcon(),
+                    Weather latestWeather = new 
+                    Weather(System.currentTimeMillis(), 
+                        newCurrently.getSummary(), 
+                        newCurrently.getIcon(),
                             //newCurrently.getTemperature() + "ºC",
                             //newCurrently.getHumidity()*100 +"%",
                             newTemperature,
@@ -116,8 +119,10 @@ public class Repository {
                     /*Finally, make a Notification if the Refresh Call was made by AutoRefreshWorker*/
                     if (isPeriodic) {
                         /*Make call for creating Notification*/
-                        Intent intent = new Intent(context, NotificationReceiver.class);
-                        context.sendBroadcast(intent);
+                        /*Intent intent = new Intent(context.getApplicationContext(), NotificationReceiver.class);
+                        context.getApplicationContext().sendBroadcast(intent);*/
+                        NotificationService.enqueueWork(context.getApplicationContext(), new Intent());
+                        Log.d(TAG, "onResponse: Call was made by AutoRefreshWorker");
                     }
 
                 } else {

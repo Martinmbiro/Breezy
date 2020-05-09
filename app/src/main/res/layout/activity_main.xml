@@ -103,7 +103,6 @@
                                     android:layout_weight="49.5"
                                     android:fontFamily="@font/pompiere"
                                     android:gravity="end"
-                                    android:text="Mon, 2.45AM"
                                     android:textColor="@color/colorNotification"
                                     android:textSize="19dp" />
 

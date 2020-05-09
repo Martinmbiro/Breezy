@@ -2,6 +2,7 @@ package com.ahrefs.blizzard.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mBinding;
     private WeatherViewModel mViewModel;
     private WeatherViewModel.Factory mFactory;
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 if (weather != null) {
                     mViewModel.updateFields();
                     updateRestOfViews(weather);
+                    Log.d(TAG, "onChanged: SUMMARY "+ weather.getSummary());
+                    Log.d(TAG, "onChanged: HUMIDITY "+ weather.getHumidity());
+                    Log.d(TAG, "onChanged: TEMPERATURE "+ weather.getTemperature());
+                    Log.d(TAG, "onChanged: UV-INDEX "+ weather.getUvIndex());
+
                 }
             }
         });

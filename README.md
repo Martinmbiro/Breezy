@@ -9,7 +9,7 @@ Also, built entirely on Java.
 **Functionality yet to implement:**
 - [x] ~~Inflating views with Observable live-date using data-binding~~
 - [x] ~~Adding a Preferences and an Info activity~~
-- [ ] *Adding the logic to handle user preferences on weather updates*
+- [x] ~~Adding the logic to handle user preferences on weather updates~~
 - [ ] *Adding a Splash Screen*
 - [ ] *Geo-location and reverse geo-coding to access user's current location*
 
