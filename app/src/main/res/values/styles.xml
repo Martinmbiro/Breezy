@@ -6,6 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- New Attributes -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="AppTheme.BlizzardNoActionBar">
@@ -14,10 +17,18 @@
     </style>
     
     <style name="AppTheme.SplashScreen">
+        <!-- For No actionBar -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+
+        <!-- For background -->
         <item name="android:windowBackground">@drawable/splash_screen</item>
 
+        <!-- For status bar and navigation bar -->
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:navigationBarColor">@color/colorPrimary</item>      
+    
     </style>
 
 </resources>
