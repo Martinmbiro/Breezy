@@ -16,7 +16,7 @@ Also, built entirely on Java.
 ## Screenshots
 
 |<img src='shots/main1.png' width='150'/>|<img src='shots/main2.png' width='150'/>|<img src='shots/main3.png' width='150'/>|<img src='shots/main4.png' width='150'/>|
-|:--:|
+|:--:|:--:|:--:|:--:|
 |Main Activity|
 
 |<img src='shots/prefs2.png' width='150'/>|<img src='shots/prefs1.png' width='150'/>|
