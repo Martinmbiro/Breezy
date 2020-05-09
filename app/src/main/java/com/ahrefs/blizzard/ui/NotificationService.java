@@ -16,7 +16,8 @@ import androidx.core.app.JobIntentService;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-
+/*The class responsible for creating the notification channel 
+ *And displaying notifications*/
 public class NotificationService extends JobIntentService {
     private static final String TAG = "NotificationService";
     private static final int JOB_ID = 1000;
@@ -68,7 +69,7 @@ public class NotificationService extends JobIntentService {
                 .setCategory(NotificationCompat.CATEGORY_REMINDER)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setColor(getResources().getColor(R.color.colorNotification))
-                .setSmallIcon(R.drawable.sunny)
+                .setSmallIcon(R.drawable.small_icon)
                 .setAutoCancel(true)
                 .setContentTitle("Weather Data Updated")
                 .setStyle(new NotificationCompat.BigTextStyle()

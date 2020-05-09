@@ -6,4 +6,6 @@
 
     <color name="colorNotification">#FF0536</color>
     <color name="parentBg">#E6ECF0</color>
+
+    <color name="colorSplash">#37000000</color>
 </resources>

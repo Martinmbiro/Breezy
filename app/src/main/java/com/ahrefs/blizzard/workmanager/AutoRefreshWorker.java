@@ -23,7 +23,12 @@ public class AutoRefreshWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        mRepository.refreshWeather(true, mContext);
-        return Result.success();
+        /*mRepository.refreshWeatherAsync(true, mContext);
+        return Result.success();*/
+        if (mRepository.refreshWeatherSync(true, mContext)){
+            return Result.success();
+        }else{
+            return Result.retry();
+        }
     }
 }

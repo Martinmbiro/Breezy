@@ -74,7 +74,7 @@ public class WeatherViewModel extends AndroidViewModel {
 
         mOneTimeWorkRequest = new OneTimeWorkRequest.Builder(OneTimeWorker.class)
                 .addTag(ONE_TIME_REQUEST_TAG)
-                .setBackoffCriteria(BackoffPolicy.EXPONENTIAL, 3, TimeUnit.SECONDS)
+                .setBackoffCriteria(BackoffPolicy.LINEAR, 30, TimeUnit.SECONDS)
                 .setConstraints(constraints)
                 .build();
 

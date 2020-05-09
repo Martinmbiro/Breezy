@@ -94,10 +94,20 @@ public class MainActivity extends AppCompatActivity {
                 .observe(this, new Observer<List<WorkInfo>>() {
             @Override
             public void onChanged(List<WorkInfo> workInfos) {
-                if(workInfos!=null){
+                /*if(workInfos!=null){
                     if(workInfos.get(0).getState() == WorkInfo.State.SUCCEEDED){
                         Toast.makeText(MainActivity.this, "Updated", Toast.LENGTH_SHORT).show();
                     }
+                }*/
+                if (workInfos != null && workInfos.get(0).getState() == WorkInfo.State.FAILED && mViewModel.isNetworkAvailable()){
+                    ChocoBar.builder()
+                            .setActivity(MainActivity.this)
+                            .setIcon(R.drawable.ic_sync_error)
+                            .setText("Something went wrong")
+                            //.centerText()
+                            .setDuration(ChocoBar.LENGTH_LONG)
+                            .build()
+                            .show();
                 }
             }
         });

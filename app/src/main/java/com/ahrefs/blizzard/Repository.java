@@ -15,6 +15,8 @@ import com.ahrefs.blizzard.model.room.WeatherDao;
 import com.ahrefs.blizzard.model.room.WeatherDb;
 import com.ahrefs.blizzard.ui.NotificationService;
 
+import java.io.IOException;
+
 import androidx.lifecycle.LiveData;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
@@ -31,6 +33,7 @@ public class Repository {
     private WeatherDao mWeatherDao;
     private LiveData<Weather> mWeatherLiveData;
     private static final String TAG = "Repository";
+    private Boolean mWasSuccessful;
 
     /*Class Constructor*/
     public Repository(Application application) {
@@ -86,7 +89,7 @@ public class Repository {
     /*Responsible for Refreshing Weather in the Db
      * Makes request to obtain new weather,
      * Deletes old Weather and Updates table with new Weather*/
-    public void refreshWeather(final Boolean isPeriodic, final Context context) {
+    public void refreshWeatherAsync(final Boolean isPeriodic, final Context context) {
         BreezyAPI breezyAPI = RetrofitClient.getInstance().create(BreezyAPI.class);
         Call<BreezyResponse> call = breezyAPI.getResponse();
         call.enqueue(new Callback<BreezyResponse>() {
@@ -103,10 +106,10 @@ public class Repository {
                     String newHumidity = Math.round((int) halfBakedHumidity) + "%";
 
                     /*Create a new Weather Object from this*/
-                    Weather latestWeather = new 
-                    Weather(System.currentTimeMillis(), 
-                        newCurrently.getSummary(), 
-                        newCurrently.getIcon(),
+                    Weather latestWeather = new
+                            Weather(System.currentTimeMillis(),
+                            newCurrently.getSummary(),
+                            newCurrently.getIcon(),
                             //newCurrently.getTemperature() + "ºC",
                             //newCurrently.getHumidity()*100 +"%",
                             newTemperature,
@@ -137,6 +140,66 @@ public class Repository {
             }
         });
 
+    }
+
+    /*Does the same job as refreshWeatherAsync, but Synchronously*/
+    public boolean refreshWeatherSync(final Boolean isPeriodic, final Context context) {
+        BreezyAPI breezyAPI = RetrofitClient.getInstance().create(BreezyAPI.class);
+        Call<BreezyResponse> mCall = breezyAPI.getResponse();
+        try {
+            Response<BreezyResponse> response = mCall.execute();
+            if (response.isSuccessful() && (response.body() != null ? response.body().getCurrently().getSummary() : null) != null) {
+
+                mWasSuccessful = true;
+                Log.d(TAG, "refreshWeatherSync: mWasSuccessful = " + mWasSuccessful);
+                /*Only if response is successful, Empty the Table*/
+                deleteOldWeather();
+
+                /* Get currently Object from Response*/
+                Currently newCurrently = response.body().getCurrently();
+                String newTemperature = Math.round((int) newCurrently.getTemperature()) + "ºC";
+                double halfBakedHumidity = newCurrently.getHumidity() * 100;
+                String newHumidity = Math.round((int) halfBakedHumidity) + "%";
+
+                /*Create a new Weather Object from this*/
+                Weather latestWeather = new
+                        Weather(System.currentTimeMillis(),
+                        newCurrently.getSummary(),
+                        newCurrently.getIcon(),
+                        //newCurrently.getTemperature() + "ºC",
+                        //newCurrently.getHumidity()*100 +"%",
+                        newTemperature,
+                        newHumidity,
+                        newCurrently.getUvIndex());
+
+                /*Insert this weather into DB*/
+                insertWeather(latestWeather);
+
+                /*Finally, make a Notification if the Refresh Call was made by AutoRefreshWorker*/
+                if (isPeriodic && mWasSuccessful) {
+                    /*Make call for creating Notification*/
+                        /*Intent intent = new Intent(context.getApplicationContext(), NotificationReceiver.class);
+                        context.getApplicationContext().sendBroadcast(intent);*/
+                    NotificationService.enqueueWork(context.getApplicationContext(), new Intent());
+                    Log.d(TAG, "onResponse: Call was made by AutoRefreshWorker");
+                }
+
+            } else {
+                mWasSuccessful = false;
+                Log.d(TAG, "refreshWeatherSync: mWasSuccessful = " + mWasSuccessful);
+                Log.d(TAG, "onResponse: MESSAGE: " + response.message());
+                Log.d(TAG, "onResponse: CODE: " + response.code());
+            }
+
+        } catch (IOException e) {
+            mWasSuccessful = false;
+            Log.d(TAG, "refreshWeatherSync: mWasSuccessful = " + mWasSuccessful);
+            e.printStackTrace();
+            Log.d(TAG, "refreshWeatherSync: " + e.getMessage());
+            Log.d(TAG, "refreshWeatherSync: " + e.getCause().getMessage());
+        }
+        Log.d(TAG, "refreshWeatherSync: mWasSuccessful = " + mWasSuccessful);
+        return mWasSuccessful;
     }
 
     private static class DeleteAllAsync extends AsyncTask<Void, Void, Void> {
