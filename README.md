@@ -5,7 +5,7 @@
 - Supports a weather auto-refresh feature that the user has control over
 - Fires a notification when the weather is refreshed in the background.
 
-It’s a pretty simple app, in all honesty, but it tries to use best programming practices and android Architecture components, which are part of the [Android Jetpack](https://www.youtube.com/watch?v=LmkKFCfmnhQ), as recommended by Google. Also, built entirely on Java.
+It’s a pretty simple app, in all honesty, but it tries to use best programming practices and android Architecture components, which are part of the [Android Jetpack](https://www.youtube.com/watch?v=LmkKFCfmnhQ), as recommended by Google. Also, contributions are most welcome.
 
 **Functionality yet to implement:**
 - [x] ~~Inflating views with Observable live-date using data-binding~~
@@ -17,17 +17,13 @@ It’s a pretty simple app, in all honesty, but it tries to use best programming
 
 ## Screenshots
 
-|<img src='shots/main1.png' width='200'/>|<img src='shots/main2.png' width='200'/>|<img src='shots/main3.png' width='200'/>|<img src='shots/main4.png' width='200'/>|
+|<img src='shots/1.png' width='200'/>|<img src='shots/2.png' width='200'/>|<img src='shots/3.png' width='200'/>|
 |:--:|:--:|:--:|:--:|
-|Main Activity|
+|Splash Screen|Empty Weather|Main Activity|
 
-|<img src='shots/prefs2.png' width='200'/>|<img src='shots/prefs1.png' width='200'/>|
-|:--:|:--:|
-|Autosync Off|Autosync On|
-
-|<img src='shots/info.png' width='200'/>|<img src='shots/notification.png' width='200'/>|
-|:--:|:--:|
-|Info Activity|Notification|
+|<img src='shots/4.png' width='200'/>|<img src='shots/5.png' width='200'/>|<img src='shots/6.png' width='200'/>|
+|:--:|:--:|:--:|:--:|
+|Info Activity|Preferences Activity|Notification|
 
 ## Tools
 #### 1.	[Room](https://www.youtube.com/watch?v=SKWh4ckvFPM)
