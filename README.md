@@ -18,11 +18,11 @@ It’s a pretty simple app, in all honesty, but it tries to use best programming
 ## Screenshots
 
 |<img src='shots/1.png' width='200'/>|<img src='shots/2.png' width='200'/>|<img src='shots/3.png' width='200'/>|
-|:--:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 |Splash Screen|Empty Weather|Main Activity|
 
 |<img src='shots/4.png' width='200'/>|<img src='shots/5.png' width='200'/>|<img src='shots/6.png' width='200'/>|
-|:--:|:--:|:--:|:--:|
+|:--:|:--:|:--:|
 |Info Activity|Preferences Activity|Notification|
 
 ## Tools
