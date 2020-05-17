@@ -54,8 +54,8 @@ public class WeatherViewModel extends AndroidViewModel {
     }
 
     /*Return network connectivity state*/
-    public Boolean isNetworkAvailable(){
-        Boolean isConnected = false;
+    public boolean isNetworkAvailable(){
+        boolean isConnected = false;
         /*TODO Refactor to accommodate Android 9 and above as this method is deprecated on higher API levels*/
         ConnectivityManager manager = (ConnectivityManager) mApplication.getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         //Get an instance of Network Info
@@ -88,6 +88,7 @@ public class WeatherViewModel extends AndroidViewModel {
                 .cancelAllWorkByTag(PERIODIC_REQUEST_TAG);
     }
 
+    /*Sets new Values to the fields of type MutableLiveData*/
     public void updateFields(){
         mSummary.setValue(Objects.requireNonNull(mRepository.getWeatherLiveData().getValue()).getSummary());
         mHumidity.setValue(mRepository.getWeatherLiveData().getValue().getHumidity());

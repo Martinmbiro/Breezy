@@ -56,8 +56,8 @@
                         android:paddingBottom="10dp">
 
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="25dp"
                             android:layout_marginEnd="25dp"
@@ -82,8 +82,8 @@
                         android:paddingBottom="10dp">
 
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="25dp"
                             android:layout_marginEnd="25dp"
@@ -108,8 +108,8 @@
                         android:paddingBottom="10dp">
 
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="25dp"
                             android:layout_marginEnd="25dp"
@@ -134,12 +134,12 @@
                         android:paddingBottom="10dp">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginStart="25dp"
                             android:layout_marginEnd="25dp"
-                            android:src="@drawable/ic_laptop" />
+                            android:src="@drawable/ic_arrow_down" />
 
                         <TextView
                             android:layout_width="0dp"
@@ -147,7 +147,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="30dp"
                             android:layout_weight="70"
-                            android:text="martinmbiro@gmail.com"
+                            android:text="Swipe down to refresh weather data"
                             android:textColor="@color/design_default_color_secondary_variant"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -164,11 +164,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/darkline"
                     android:text="Powered by DarkSky API"
                     android:textAlignment="center"
                     android:textColor="#747474"
-                    android:textSize="15sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
         </LinearLayout>

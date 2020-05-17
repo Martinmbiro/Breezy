@@ -1,34 +1,28 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <!-- New Attributes -->
+        <!-- Status Bar color -->
         <item name="android:windowLightStatusBar">true</item>
-    </style>
-
-    <style name="AppTheme.BlizzardNoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/parentBg</item>
     </style>
     
     <style name="AppTheme.SplashScreen">
-        <!-- For No actionBar -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-
         <!-- For background -->
         <item name="android:windowBackground">@drawable/splash_screen</item>
 
         <!-- For status bar and navigation bar -->
-        <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
-        <item name="android:navigationBarColor">@color/colorPrimary</item>      
-    
+        <item name="android:navigationBarColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.NoWeather">
+        <item name="android:statusBarColor">@color/colorPrimary</item>
     </style>
 
 </resources>

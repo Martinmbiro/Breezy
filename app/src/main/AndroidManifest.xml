@@ -13,16 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <activity android:name=".ui.EmptyWeather"
+            android:theme="@style/AppTheme.NoWeather"/>
+
         <activity
             android:name=".ui.InfoActivity"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.BlizzardNoActionBar" />
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.SettingsActivity"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme.BlizzardNoActionBar" />
-
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.SplashScreen"
             android:theme="@style/AppTheme.SplashScreen">
@@ -32,26 +33,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme.BlizzardNoActionBar" >
+            android:theme="@style/AppTheme">
+
+            <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            -->
         </activity>
 
         <service
             android:name=".workmanager.EnqueuePeriodicService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
         <service
             android:name=".ui.NotificationService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
-
     </application>
 
 </manifest>

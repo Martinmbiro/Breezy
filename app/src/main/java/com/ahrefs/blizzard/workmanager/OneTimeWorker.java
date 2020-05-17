@@ -30,12 +30,9 @@ public class OneTimeWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        /*mRepository.refreshWeatherAsync(false, mContext);
-        * return Result.success();*/
         if (mRepository.refreshWeatherSync(false, mContext)){
             return Result.success();
         }else{
-            //return Result.retry();
             return Result.failure();
         }
     }

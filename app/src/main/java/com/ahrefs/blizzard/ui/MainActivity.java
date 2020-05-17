@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
                             .setActivity(MainActivity.this)
                             .setIcon(R.drawable.ic_sync_error)
                             .setText("Something went wrong")
-                            //.centerText()
                             .setDuration(ChocoBar.LENGTH_LONG)
                             .build()
                             .show();

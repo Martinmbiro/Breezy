@@ -118,7 +118,7 @@
                                 android:layout_marginBottom="20dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/partly_cloudy_day" />
+                                android:src="@drawable/sunny" />
 
                             <!--TextView-->
                             <TextView

@@ -59,7 +59,7 @@ public class NotificationService extends JobIntentService {
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
 
         /*To open MainActivity when the Notification is tapped:*/
-        Intent nextIntent = new Intent(this, MainActivity.class);
+        Intent nextIntent = new Intent(this, SplashScreen.class);
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(nextIntent);
         PendingIntent contentIntent = stackBuilder.getPendingIntent(PENDING_INTENT_REQUEST_CODE, 0);
