@@ -50,7 +50,7 @@
                                 android:layout_marginBottom="20dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/refresh" />
+                                android:src="@drawable/empty" />
 
                             <!--TextView-->
                             <TextView

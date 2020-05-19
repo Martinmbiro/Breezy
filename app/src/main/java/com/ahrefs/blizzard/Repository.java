@@ -34,7 +34,6 @@ public class Repository {
     private WeatherDao mWeatherDao;
     private LiveData<Weather> mWeatherLiveData;
     private static final String TAG = "Repository";
-    private boolean mWasSuccessful;
 
     /*Class Constructor*/
     public Repository(Application application) {
@@ -49,18 +48,19 @@ public class Repository {
 
     /*Responsible for Refreshing Weather in the Db
      * Makes request to obtain new weather,
-     * Deletes old Weather and Updates table with new Weather
+     * Deletes old Weather and inserts new Weather into Db
      * Network request done SYNCHRONOUSLY since the Worker runs on an alternate thread from main anyway,
      * And we need to wait for the boolean returned so as to return Result.success() or Result.failure() */
     public boolean refreshWeatherSync(final Boolean isPeriodic, final Context context) {
         BreezyAPI breezyAPI = RetrofitClient.getInstance().create(BreezyAPI.class);
         Call<BreezyResponse> mCall = breezyAPI.getResponse();
+        boolean mWasSuccessful;
         try {
             Response<BreezyResponse> response = mCall.execute();
             if (response.isSuccessful() && (response.body() != null ? response.body().getCurrently().getSummary() : null) != null) {
                 mWasSuccessful = true;
-                Log.d(TAG, "refreshWeatherSync: mWasSuccessful = " + mWasSuccessful);
-                /*Only if response is successful, Empty the Table*/
+
+                /*Only if response is successful, deleteOldWeather*/
                 deleteOldWeather();
 
                 /* Get currently Object from Response*/
@@ -69,15 +69,15 @@ public class Repository {
                 double halfBakedHumidity = newCurrently.getHumidity() * 100;
                 String newHumidity = Math.round((int) halfBakedHumidity) + "%";
 
-                /*Create a new Weather Object hence:*/
+                /* Create a new Weather Object hence:*/
                 Weather latestWeather = new Weather(System.currentTimeMillis(), newCurrently.getSummary(),
                         newCurrently.getIcon(), newTemperature, newHumidity, newCurrently.getUvIndex());
 
                 /*Insert this Weather into DB*/
                 insertWeather(latestWeather);
 
-                /*Finally, make a Notification if the Refresh Call was made by AutoRefreshWorker*/
-                if (isPeriodic && mWasSuccessful) {
+                /* Finally, make a Notification if the Refresh Call was made by AutoRefreshWorker*/
+                if (isPeriodic) {
                     NotificationService.enqueueWork(context.getApplicationContext(), new Intent());
                     Log.d(TAG, "onResponse: Call was made by AutoRefreshWorker");
                 }
@@ -134,12 +134,11 @@ public class Repository {
         insertObservable.subscribe(insertObserver);
     }
 
-    /*Delete Weather (Using RxJava)*/
+    /*Update Weather (Using RxJava)*/
     private void deleteOldWeather() {
-        /*new DeleteAllAsync(mWeatherDao).execute();*/
-        /*The string in this case is merely a placeholder since we cannot
-         * pass Void or Object in Observers or Observables*/
-        Observable<String> deleteObservable = Observable.just("place_holder")
+        /*The String is a placeholder in this case,
+        * Since we cannot pass Void or Object in an Observable*/
+        Observable<String> deleteObservable = Observable.just("")
                 .subscribeOn(Schedulers.io());
 
         Observer<String> deleteObserver = new Observer<String>() {

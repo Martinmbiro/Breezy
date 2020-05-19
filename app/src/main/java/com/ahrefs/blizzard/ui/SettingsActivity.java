@@ -95,7 +95,6 @@ public class SettingsActivity extends AppCompatActivity {
 
                 EnqueuePeriodicService.enqueueWork(SettingsActivity.this, new Intent());
                 Log.d(TAG, "saveChanges: "+ mPrefs.getInt(getString(R.string.refreshInterval),15));
-                Toast.makeText(this, "Settings Changed", Toast.LENGTH_SHORT).show();
             }
 
         }else{
@@ -103,7 +102,7 @@ public class SettingsActivity extends AppCompatActivity {
             * Cancel the AutoRefresh Work*/
             if(mPrefs.getBoolean(getString(R.string.wasSwitchOn), false)){
                 mViewModel.cancelAutoRefresh();
-                Toast.makeText(this, "Work Cancelled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "AutoRefresh Cancelled", Toast.LENGTH_SHORT).show();
                 Log.d(TAG, "saveChanges: Work Cancelled");
             }
             mEditor.putBoolean(getString(R.string.wasSwitchOn), false);

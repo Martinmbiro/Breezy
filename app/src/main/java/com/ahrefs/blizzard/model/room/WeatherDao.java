@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 @Dao
 public interface WeatherDao {
@@ -15,7 +16,8 @@ public interface WeatherDao {
     @Insert
     void insertWeather(Weather weather);
 
-    //Delete all Weather objects from the Table
+    //Delete Weather Object from the Database
     @Query("DELETE FROM weather_table")
     void deleteOldWeather();
+
 }
